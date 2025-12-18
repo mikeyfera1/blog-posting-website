@@ -1,0 +1,21 @@
+nav.navbar 
+    .navbar-content 
+        a.navbar-brand(href="/") StreamVerse 
+
+    .navbar-links 
+        a(href="/") Home 
+        a(href="/browse") Browse 
+
+        if user 
+            a(href="/create") Create Post
+            a(href="/logout", style="color: #ff6b6b;") Logout  
+            if user.is_admin 
+                span.navbar-user 
+                    span(style="color: #FFD700;") Admin 
+                    |  #{user.username}
+            else 
+                span.navbar-user= user.username
+
+        else 
+            a(href="/login") Login 
+            a(href="/register") Register

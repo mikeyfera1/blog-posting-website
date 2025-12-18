@@ -1,0 +1,27 @@
+extends layout.pug 
+
+block content 
+  .container 
+    .page-header 
+      h1.page-title Register 
+      p.page-subtitle To get exlusive features now! 
+
+    .card(style="margin: 0 auto 4px; width: 40%;")
+      form(method="POST", action="/api/register")
+        .flex(style="flex-direction: column; gap: 10px;")
+          input.form-input(
+              id="username",
+              type="text", 
+              name="username", 
+              placeholder="Username",
+          )
+          input.form-input(
+              id="password",
+              type="password", 
+              name="password", 
+              placeholder="Password",
+          )
+        button.btn.btn-primary(style= "margin: 25px auto; display: block;" type="submit") Register
+
+block scripts 
+  script(src="/js/register.js")

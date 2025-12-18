@@ -1,0 +1,603 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #0f0519 0%, #1a0b2e 100%);
+    color: #ffffff;
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* Containers */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.container-narrow {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Navigation Bar CSS */
+.navbar {
+    background: rgba(26, 11, 46, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 2px solid #2d1b69;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: row;
+}
+
+.navbar-content {
+    max-width: 1200px;
+    margin: 0;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-brand {
+    font-size: 28px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #00d9ff, #7b2cbf);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-decoration: none;
+    letter-spacing: -0.5px;
+}
+
+.navbar-links {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.navbar-links a {
+    color: #b8b8d1;
+    text-decoration: none;
+    padding: 8px 20px;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.navbar-links a:hover {
+    color: #ffffff;
+    background: rgba(123, 44, 191, 0.2);
+    transform: translateY(-2px);
+}
+
+.navbar-user {
+    color: #00d9ff;
+    font-weight: 600;
+}
+
+/* Different style buttons */
+.btn {
+    display: inline-block;
+    padding: 12px 32px;
+    border-radius: 50px;
+    font-weight: 600;
+    text-decoration: none;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+.btn:active {
+    transform: translateY(-1px);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #7b2cbf, #ff006e);
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    box-shadow: 0 0 20px rgba(123, 44, 191, 0.4);
+}
+
+.btn-secondary {
+    background: transparent;
+    border: 2px solid #00d9ff;
+    color: #00d9ff;
+}
+
+.btn-secondary:hover {
+    background: #00d9ff;
+    color: #0f0519;
+}
+
+.btn-success {
+    background: #06ffa5;
+    color: #0f0519;
+}
+
+.btn-danger {
+    background: #ff006e;
+    color: #ffffff;
+}
+
+.btn-small {
+    padding: 6px 16px;
+    font-size: 14px;
+}
+
+.btn-block {
+    width: 100%;
+    display: block;
+}
+
+/* cards used to display posts, etc... */
+.card {
+    background: #16213e;
+    border-radius: 20px;
+    padding: 32px;
+    margin-bottom: 32px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease;
+    border: 1px solid #2d1b69;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+    border-color: #7b2cbf;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.card-title {
+    font-size: 26px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 8px;
+    line-height: 1.3;
+}
+
+.card-meta {
+    display: flex;
+    gap: 20px;
+    color: #b8b8d1;
+    font-size: 14px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.card-content {
+    color: #b8b8d1;
+    line-height: 1.8;
+    white-space: pre-wrap;
+    margin-bottom: 20px;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #2d1b69;
+}
+
+/* For all the categories associated with posts */
+.badge {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.badge-drama {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+}
+
+.badge-comedy {
+    background: linear-gradient(135deg, #f093fb, #f5576c);
+    color: white;
+}
+
+.badge-scifi {
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+    color: white;
+}
+
+.badge-reality {
+    background: linear-gradient(135deg, #fa709a, #fee140);
+    color: white;
+}
+
+.badge-thriller {
+    background: linear-gradient(135deg, #30cfd0, #330867);
+    color: white;
+}
+
+.badge-default {
+    background: #7b2cbf;
+    color: white;
+}
+
+/* to help display the posts in a grid like format */
+.post-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 32px;
+    margin-bottom: 48px;
+}
+
+.post-preview {
+    background: #16213e;
+    border-radius: 20px;
+    padding: 32px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease;
+    border: 1px solid #2d1b69;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.post-preview:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5), 0 0 20px rgba(123, 44, 191, 0.4);
+    border-color: #00d9ff;
+}
+
+.post-preview .card-content {
+    max-height: 120px;
+    overflow: hidden;
+    position: relative;
+}
+
+.post-preview .card-content::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40px;
+    background: linear-gradient(transparent, #16213e);
+}
+
+.read-more {
+    color: #00d9ff;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    margin-top: 12px;
+    transition: all 0.3s ease;
+}
+
+.read-more:hover {
+    color: #7b2cbf;
+    transform: translateX(4px);
+}
+
+/* for all the forms in the website */
+.form-group {
+    margin-bottom: 32px;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 8px;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.form-input,
+.form-select {
+    width: 100%;
+    height: 50px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid #2d1b69;
+    border-radius: 12px;
+    color: #ffffff;
+    font-size: 16px;
+    font-family: inherit;
+    transition: all 0.3s ease;
+}
+
+.form-textarea {
+    width: 100%;
+    height: 60px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid #2d1b69;
+    border-radius: 12px;
+    color: #ffffff;
+    font-size: 16px;
+    font-family: inherit;
+    transition: all 0.3s ease;
+}
+
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus {
+    outline: none;
+    border-color: #7b2cbf;
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 0 0 3px rgba(123, 44, 191, 0.2);
+}
+
+.form-textarea {
+    min-height: 200px;
+    resize: vertical;
+    font-family: inherit;
+    line-height: 1.6;
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+    color: #b8b8d1;
+}
+
+/* All comment section related CSS */
+.comments-section {
+    margin-top: 48px;
+    padding-top: 48px;
+    border-top: 2px solid #2d1b69;
+}
+
+.comments-header {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 32px;
+    color: #00d9ff;
+}
+
+.comment {
+    background: rgba(255, 255, 255, 0.03);
+    border-left: 4px solid #7b2cbf;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+
+.comment:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-left-color: #00d9ff;
+}
+
+.comment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.comment-author {
+    font-weight: 700;
+    color: #00d9ff;
+    font-size: 15px;
+}
+
+.comment-date {
+    color: #b8b8d1;
+    font-size: 13px;
+}
+
+.comment-content {
+    color: #b8b8d1;
+    line-height: 1.6;
+    white-space: pre-wrap;
+}
+
+.comment-actions {
+    margin-top: 12px;
+    display: flex;
+    gap: 12px;
+}
+
+.comment-form {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 20px;
+    padding: 32px;
+    margin-bottom: 32px;
+}
+
+/* For the browsing page, to display the posts for different pages */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin: 48px 0;
+}
+
+.pagination a,
+.pagination span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    height: 44px;
+    padding: 0 20px;
+    background: #16213e;
+    border: 2px solid #2d1b69;
+    border-radius: 50px;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.pagination a:hover {
+    background: #7b2cbf;
+    border-color: #7b2cbf;
+    transform: translateY(-2px);
+}
+
+.pagination .active {
+    background: linear-gradient(135deg, #7b2cbf, #ff006e);
+    border-color: transparent;
+}
+
+/* CSS for alerts (never ended up using these since I want with other CSS to display alerts) */
+.alert {
+    padding: 20px 32px;
+    border-radius: 20px;
+    margin-bottom: 32px;
+    border-left: 4px solid;
+    font-weight: 500;
+}
+
+.alert-success {
+    background: rgba(6, 255, 165, 0.1);
+    border-left-color: #06ffa5;
+    color: #06ffa5;
+}
+
+.alert-error {
+    background: rgba(255, 0, 110, 0.1);
+    border-left-color: #ff006e;
+    color: #ff006e;
+}
+
+.alert-info {
+    background: rgba(0, 217, 255, 0.1);
+    border-left-color: #00d9ff;
+    color: #00d9ff;
+}
+
+/* Headers for Pages */
+.page-header {
+    text-align: center;
+    margin-bottom: 48px;
+    padding: 48px 0;
+}
+
+.page-title {
+    font-size: 48px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #00d9ff, #7b2cbf, #ff006e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 12px;
+}
+
+.page-subtitle {
+    color: #b8b8d1;
+    font-size: 18px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Categorized different css styles to make it easier to put in pug files */
+.text-center {
+    text-align: center;
+}
+
+.mt-1 { margin-top: 8px; }
+.mt-2 { margin-top: 12px; }
+.mt-3 { margin-top: 20px; }
+.mt-4 { margin-top: 32px; }
+
+.mb-1 { margin-bottom: 8px; }
+.mb-2 { margin-bottom: 12px; }
+.mb-3 { margin-bottom: 20px; }
+.mb-4 { margin-bottom: 32px; }
+
+.flex {
+    display: flex;
+}
+
+.flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.gap-1 { gap: 8px; }
+.gap-2 { gap: 12px; }
+.gap-3 { gap: 20px; }
+
+/* To change different elements to adjust to screen size (adding responsiveness) */
+@media (max-width: 768px) {
+    .navbar-content {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .post-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .page-title {
+        font-size: 36px;
+    }
+    
+    .card {
+        padding: 20px;
+    }
+    
+    .pagination {
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 480px) {
+    .container,
+    .container-narrow {
+        padding: 12px;
+    }
+    
+    .btn {
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+    
+    .navbar-brand {
+        font-size: 22px;
+    }
+    
+    .card-title {
+        font-size: 20px;
+    }
+}

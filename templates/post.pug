@@ -1,0 +1,59 @@
+extends layout.pug
+
+block content
+  .container-narrow
+    .page-header(style="margin-bottom: 10px;")
+      h1.page-title Post by #{post.author_username}
+      p.page-subtitle Something to do with #{post.category} #{emoji}
+    .card
+      .card-header
+        div
+          h1.card-title= post.title
+          .card-meta
+            span.badge(class=`badge-${post.category.toLowerCase()}`)= post.category
+            span 📅 #{new Date(post.publication_date).toLocaleDateString()}
+            if post.author_username
+              span ✍️ #{post.author_username}
+        
+        if user && (user.is_admin || user.id === post.author_id)
+          .flex.gap-2
+            input(type="hidden", id="postId", name="postId", value=post.id)
+            a.btn.btn-small.btn-secondary(href=`/edit/${post.id}`) Edit
+            button.btn.btn-small.btn-danger(id="delete", name="delete") Delete
+      
+      .card-content= post.content
+      
+      .card-footer
+        span.text-secondary Last edited: #{new Date(post.last_edited).toLocaleDateString()}
+    
+    if user
+        .card.mb-4
+            .card-body
+                h4 Add a Comment
+                form#comment-form(method="POST", action=`/post/${post.id}/comment`)
+                  .form-group
+                    textarea#comment-textarea.form-textarea(name="content", placeholder="Write a comment..." style="margin-top: 25px;", rows="4" required)
+                  button.btn.btn-primary(type="submit") Post Comment
+
+    .card(style="margin-top: 20px;")
+      .card-header
+          h2 Comments (#{comments.length})
+      .card-content#comments-container
+          if comments.length === 0
+            p.text-secondary#no-comments No comments yet. Be the first!
+          else
+            each c in comments
+              .comment(style="margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #333;")
+                strong 💻  #{c.username}
+                span.text-secondary(style="margin-left: 10px;") #{new Date(c.created_at).toLocaleDateString()}
+                p.comment-content= c.content
+                textarea.form-textarea.comment-edit(style="display: none; width: 100%; margin-top: 10px; margin-bottom: 10px;", rows="4")= c.content
+                if user && (user.username === c.username || user.is_admin)
+                    button.btn.btn-small.btn-secondary.edit-comment(style="margin-top: 10px;") Edit
+                    input(type="hidden", class="comment-id", value=c.id)
+                    button.btn.btn-small.btn-primary.save-comment(style="display: none; margin-left: 5px;") Update
+                    button.btn.btn-small.btn-secondary.cancel-edit(style="display: none; margin-left: 5px;") Cancel
+                    button.btn.btn-small.btn-danger.delete-comment(style="margin-left: 10px; margin-top: 10px;") Delete
+
+block scripts 
+    script(src="/js/update.js")

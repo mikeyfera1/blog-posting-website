@@ -1,0 +1,29 @@
+extends layout.pug
+block content 
+   .container 
+        .page-header 
+            h1.page-title Recent Posts 
+            p.page-subtitle Discover the latest reviews and discussions on your favorite TV shows and movies 
+
+        if posts.length > 0
+          .post-grid 
+              each post in posts 
+                  a.post-preview(href=`/post/${post.id}`)
+                    .card-header 
+                      div 
+                        h2.card-title= post.title 
+                        .card-meta 
+                          span.badge(class=`badge-${post.category.toLowerCase()}`)= post.category 
+                          span 📅 #{new Date(post.publication_date).toLocaleDateString()}
+                          if post.author_username 
+                            span ✍️ #{post.author_username}
+                  
+                    .card-content= post.content 
+                  
+                    span.read-more Read More →
+          .text-center.mt-4
+            a.btn.btn-primary(href="/browse") Browse All Posts →    
+        else 
+          .text-center.mt-4
+            p.page-subtitle(style="text-align: center;") No posts! Be the first one!  
+            a.btn.btn-primary(href="/create") Create Post →  

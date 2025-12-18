@@ -1,0 +1,47 @@
+extends layout.pug
+
+block content
+  .container
+    .page-header
+      h1.page-title Edit Your Post
+      p.page-subtitle Update your content and save your changes!
+
+    .card(style="margin: 0 auto 4px; width: 50%;")
+      form(method="POST", action=`/api/edit/${post.id}`)
+        .flex(style="flex-direction: column; gap: 15px; padding: 20px;")
+          
+          input(type="hidden", id="postId", name="id", value=post.id)
+
+          input.form-input(
+            id="title",
+            type="text",
+            name="title",
+            value=post.title,
+            placeholder="Post Title",
+            required
+          )
+
+          select.form-select(id="category", name="category" required)
+            option(value="" disabled) Select a category
+            option(value="drama", selected=post.category === "drama") Drama
+            option(value="comedy", selected=post.category === "comedy") Comedy
+            option(value="scifi", selected=post.category === "scifi") Sci-Fi
+            option(value="reality", selected=post.category === "reality") Reality
+            option(value="thriller", selected=post.category === "thriller") Thriller
+
+          textarea.form-input(
+            id="content",
+            name="content",
+            placeholder="Write your post content here...",
+            rows="20",
+            style="height: 150px;",
+            required
+          ) #{post.content}
+
+        button.btn.btn-primary(
+          type="submit",
+          style="margin: 20px auto; display: block;"
+        ) Save Changes
+
+block scripts
+  script(src="/js/edit.js")

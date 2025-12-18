@@ -1,0 +1,44 @@
+extends layout.pug
+
+block content
+  .container
+    .page-header
+      h1.page-title Create a Post
+      p.page-subtitle Share your thoughts with the community!
+
+    .card(style="margin: 0 auto 4px; width: 50%;")
+      form(method="POST", action="/api/create")
+        .flex(style="flex-direction: column; gap: 15px; padding: 20px;")
+
+          input.form-input(
+            id="title",
+            type="text",
+            name="title",
+            placeholder="Post Title",
+            required
+          )
+
+          select.form-select(id="category", name="category" required)
+            option(value="" disabled selected) Select a category
+            option(value="drama") Drama
+            option(value="comedy") Comedy
+            option(value="scifi") Sci-Fi
+            option(value="reality") Reality
+            option(value="thriller") Thriller
+
+          textarea.form-input(
+            id="content",
+            name="content",
+            placeholder="Write your post content here...",
+            rows="20",
+            style="height: 150px;",
+            required
+          )
+
+        button.btn.btn-primary(
+          type="submit",
+          style="margin: 20px auto; display: block;"
+        ) Create Post
+
+block scripts
+  script(src="/js/create.js")

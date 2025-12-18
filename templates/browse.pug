@@ -1,0 +1,76 @@
+extends layout.pug
+
+block content
+  .container
+    .page-header
+      h1.page-title Browse
+      p.page-subtitle Explore the complete collection
+    
+    .card.mb-4
+      form(method="GET", action="/browse")
+        .flex.flex-between.gap-3.search-row
+          .form-group(style="flex: 1; margin-bottom: 0;")
+            input.form-input(
+              type="text", 
+              name="search", 
+              placeholder="Search by title...",
+              value=searchQuery
+            )
+          
+          .form-group(style="flex: 1; margin-bottom: 0;")
+            select.form-select(name="category")
+              option(value="") All Categories
+              option(value="drama", selected=categoryFilter === "drama") Drama
+              option(value="comedy", selected=categoryFilter === "comedy") Comedy
+              option(value="scifi", selected=categoryFilter === "scifi") Sci-Fi
+              option(value="reality", selected=categoryFilter === "reality") Reality
+              option(value="thriller", selected=categoryFilter === "thriller") Thriller
+          
+          button.btn.btn-primary(type="submit") Search
+          a.btn.btn-secondary(style="padding-top: 7px; padding-bottom: 7px;", href="/browse") Clear
+    
+    if searchQuery || categoryFilter
+      .alert.alert-info
+        | Found #{totalResults} result#{totalResults !== 1 ? 's' : ''}
+        if searchQuery
+          |  for "#{searchQuery}"
+        if categoryFilter
+          |  in #{categoryFilter}
+    
+    if posts.length > 0
+      .post-grid
+        each post in posts
+          a.post-preview(href=`/post/${post.id}`)
+            .card-header
+              div
+                h2.card-title= post.title
+                .card-meta
+                  span.badge(class=`badge-${post.category.toLowerCase()}`)= post.category
+                  span 📅 #{new Date(post.publication_date).toLocaleDateString()}
+                  if post.author_username
+                    span ✍️ #{post.author_username}
+            
+            .card-content= post.content
+            
+            span.read-more Read More →
+
+      if totalPages > 1
+        .pagination
+          if currentPage > 1
+            a(href=`/browse?page=${currentPage - 1}${searchQuery ? '&search=' + searchQuery : ''}${categoryFilter ? '&category=' + categoryFilter : ''}`) ← Prev
+          
+          - for (let i = 1; i <= totalPages; i++)
+            if i === currentPage
+              span.active= i
+            else
+              a(href=`/browse?page=${i}${searchQuery ? '&search=' + searchQuery : ''}${categoryFilter ? '&category=' + categoryFilter : ''}`)= i
+          
+          if currentPage < totalPages
+            a(href=`/browse?page=${currentPage + 1}${searchQuery ? '&search=' + searchQuery : ''}${categoryFilter ? '&category=' + categoryFilter : ''}`) Next →
+    else if posts.length === 0 && !hasAnyPosts
+      .text-center.mt-4
+        p.page-subtitle No posts! Be the first one!
+    else
+      .text-center.mt-4
+        p.page-subtitle No posts found matching your search.
+        a.btn.btn-secondary(href="/browse") View All Posts
